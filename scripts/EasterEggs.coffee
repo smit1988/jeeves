@@ -6,4 +6,5 @@
 
 module.exports = (robot) ->
 	robot.hear /For Dillon!/i, (res) -> 
+		res.send "For Dillon!!!"
 		res.send "http://iruntheinternet.com/lulzdump/images/gifs/brave-ant-attacking-spider-jumping-13804816675.gif" 
