@@ -6,4 +6,4 @@
 
 module.exports = (robot) ->
 	robot.hear /hoose/i, (res) ->
-		res.send "i.groupme.com/887x558.jpeg.919f538b45b04faba9de4acfe741adc1.large"
+		res.send "http://cs5.pikabu.ru/images/big_size_comm/2015-02_2/14235830609123.jpg" 
