@@ -4,6 +4,7 @@
 # Commands:
 #	For Dillon!!! - Posts the ant jumping on spider gif and yells For Dillon!
 # 	The real Hoose! - Posts the real Hoose, we know who you really are.
+#	Mexican Hoose - Posts the real Hoose as a Mexican drug lord.
 #	Great White Buffalo - Posts the gif from Hot Tub Time Machine.
 #	Center for ants? - Posts the Zoolander center for ants gif. 
 # 	Nostalgia - Posts the 7-26-10 LK kill that the group Nostalgia is named after.
@@ -18,6 +19,9 @@ module.exports = (robot) ->
 
 	robot.hear /The real Hoose!/i, (res) ->
 		res.send "http://cs5.pikabu.ru/images/big_size_comm/2015-02_2/14235830609123.jpg" 
+
+	robot.hear /Mexican Hoose/i, (res) ->
+		res.send "http://i.imgur.com/MjUjqz7.jpg"
 
 	robot.hear /Great White Buffalo/i, (res) ->
 		res.send "https://i.imgur.com/2Y7NEq3.webm"
