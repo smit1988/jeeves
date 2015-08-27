@@ -6,5 +6,8 @@
   "hubot-maps",
   "hubot-redis-brain",
   "hubot-rules",
-  "hubot-shipit"
+  "hubot-shipit",
+  "soupselect",
+  "htmlparser",
+  "stringformat"
 ]
