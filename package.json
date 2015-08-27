@@ -5,6 +5,7 @@
   "author": "Jon Catanio joncatanio@gmail.com",
   "description": "A GroupMe chat bot for utility and amusement purposes.",
   "dependencies": {
+    "htmlparser": "^1.7.7",
     "hubot": "^2.16.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.2.1",
@@ -17,7 +18,9 @@
     "hubot-redis-brain": "0.0.3",
     "hubot-rules": "^0.1.1",
     "hubot-scripts": "^2.16.2",
-    "hubot-shipit": "^0.2.0"
+    "hubot-shipit": "^0.2.0",
+    "soupselect": "^0.2.0",
+    "stringformat": "0.0.5"
   },
   "engines": {
     "node": "0.10.x"
