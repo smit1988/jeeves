@@ -34,4 +34,4 @@ module.exports = (robot) ->
 		res.send "http://i.imgur.com/siEhUc5.jpg" 
 
 	robot.hear /Where is Cody?/i, (res) ->
-		res.send "http://web-patterns.net/wp-content/uploads/thebrandsurgery-funny-404-error-page.jpg"
+		res.send "http://9.mshcdn.com/wp-content/gallery/entertaining-404-error-pages/chrisjennings.jpg#.png"
