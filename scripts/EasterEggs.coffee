@@ -5,6 +5,7 @@
 #	For Dillon!!! - Posts the ant jumping on spider gif and yells For Dillon!
 # 	The real Hoose! - Posts the real Hoose, we know who you really are.
 #	Great White Buffalo - Posts the gif from Hot Tub Time Machine.
+#	Center for ants? - Posts the Zoolander center for ants gif. 
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -19,3 +20,6 @@ module.exports = (robot) ->
 
 	robot.hear /Great White Buffalo/i, (res) ->
 		res.send "https://i.imgur.com/2Y7NEq3.webm"
+
+	robot.hear /Center for ants?/i, (res) ->
+		res.send "https://38.media.tumblr.com/a5f174e7fa5da41a771f7f61470c6cc7/tumblr_mweix0ZXCn1qzee63o1_500.gif"
