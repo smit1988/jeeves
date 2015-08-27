@@ -8,6 +8,7 @@
 #	Great White Buffalo - Posts the gif from Hot Tub Time Machine.
 #	Center for ants? - Posts the Zoolander center for ants gif. 
 # 	Nostalgia - Posts the 7-26-10 LK kill that the group Nostalgia is named after.
+#  Where is Cody? - Tries to find our pal Cody Skrabo.
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -31,3 +32,6 @@ module.exports = (robot) ->
 
 	robot.hear /Nostalgia/i, (res) ->
 		res.send "http://i.imgur.com/siEhUc5.jpg" 
+
+	robot.hear /Where is Cody?/i, (res) ->
+		res.send "http://web-patterns.net/wp-content/uploads/thebrandsurgery-funny-404-error-page.jpg"
