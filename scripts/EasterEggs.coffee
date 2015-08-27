@@ -26,4 +26,4 @@ module.exports = (robot) ->
 		res.send "https://38.media.tumblr.com/a5f174e7fa5da41a771f7f61470c6cc7/tumblr_mweix0ZXCn1qzee63o1_500.gif"
 
 	robot.hear /Nostalgia/i, (res) ->
-		res.send "https://lh3.googleusercontent.com/WipF5hooi2wunwHBcYFaeWwCxv6ujesvz8ivyn1sflE=w391-h220-no"
+		res.send "http://i.imgur.com/siEhUc5.jpg" 
