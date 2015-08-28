@@ -5,10 +5,9 @@
 #	For Dillon!!! - Posts the ant jumping on spider gif and yells For Dillon!
 # 	The real Hoose! - Posts the real Hoose, we know who you really are.
 #	Mexican Hoose - Posts the real Hoose as a Mexican drug lord.
-#	Great White Buffalo - Posts the gif from Hot Tub Time Machine.
-#	Center for ants? - Posts the Zoolander center for ants gif. 
 # 	Nostalgia - Posts the 7-26-10 LK kill that the group Nostalgia is named after.
 #  Where is Cody? - Tries to find our pal Cody Skrabo.
+#  Meegan you left your jacket! - Meegan appears, just give up on her already!
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -24,17 +23,17 @@ module.exports = (robot) ->
 	robot.hear /Mexican Hoose/i, (res) ->
 		res.send "http://i.imgur.com/MjUjqz7.jpg"
 
-	robot.hear /Great White Buffalo/i, (res) ->
-		res.send "https://i.imgur.com/2Y7NEq3.webm"
-
-	robot.hear /Center for ants?/i, (res) ->
-		res.send "https://38.media.tumblr.com/a5f174e7fa5da41a771f7f61470c6cc7/tumblr_mweix0ZXCn1qzee63o1_500.gif"
-
 	robot.hear /Nostalgia/i, (res) ->
 		res.send "http://i.imgur.com/siEhUc5.jpg" 
 
 	robot.hear /Where is Cody?/i, (res) ->
 		res.send "http://9.mshcdn.com/wp-content/gallery/entertaining-404-error-pages/chrisjennings.jpg#.png"
+
+	meegan = ["https://media4.giphy.com/media/us72CO9KatWAE/200.gif",
+				 "https://media.giphy.com/media/4tIcgqABXEsnK/giphy.gif"
+				]
+	robot.hear /Meegan you left your jacket!/i, (res) ->
+		res.send res.random meegan
 
 # Hidden Easter Eggs.
 	robot.hear /fuck you Jeeves/i, (res) ->
