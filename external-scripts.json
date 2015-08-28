@@ -1,4 +1,5 @@
 [
+  "hubot-youtube",
   "hubot-diagnostics",
   "hubot-heroku-keepalive",
   "hubot-maps",
