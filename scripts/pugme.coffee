@@ -21,7 +21,6 @@ module.exports = (robot) ->
   robot.respond /pug bomb( (\d+))?/i, (msg) ->
     count = msg.match[2] || 5
 
-    msg.send count
     if count <= 5
       msg.http("http://pugme.herokuapp.com/bomb?count=" + count)
         .get() (err, res, body) ->
