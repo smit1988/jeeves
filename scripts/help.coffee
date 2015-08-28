@@ -86,4 +86,4 @@
 
 module.exports = (robot) ->
   robot.respond /help/i, (msg) ->
-    msg.send "To avoid spamming the group chat please visit joncatanio.com/jeeves/ for Jeeves commands and documentation"
+    msg.send "To avoid spamming the group chat please visit http://joncatanio.com/jeeves/ for Jeeves commands and documentation"
