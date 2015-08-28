@@ -19,14 +19,14 @@ module.exports = (robot) ->
         msg.send JSON.parse(body).pug
 
   robot.respond /pug bomb/i, (msg) ->
-    if msg.match[2] and msg.match[2] > 5
-      count = 5
-    else
-      count = msg.match[2] || 5 
+    count = msg.match[2] || 5
 
-    msg.http("http://pugme.herokuapp.com/bomb?count=" + count)
-      .get() (err, res, body) ->
-        msg.send pug for pug in JSON.parse(body).pugs
+    if count <= 5
+      msg.http("http://pugme.herokuapp.com/bomb?count=" + count)
+        .get() (err, res, body) ->
+          msg.send pug for pug in JSON.parse(body).pugs
+    else
+      msg.send "http://i.imgur.com/wqMWK7z.gif?noredirect"
 
   robot.respond /how many pugs are there/i, (msg) ->
     msg.http("http://pugme.herokuapp.com/count")

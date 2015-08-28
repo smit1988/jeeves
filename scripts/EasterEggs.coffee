@@ -35,3 +35,7 @@ module.exports = (robot) ->
 
 	robot.hear /Where is Cody?/i, (res) ->
 		res.send "http://9.mshcdn.com/wp-content/gallery/entertaining-404-error-pages/chrisjennings.jpg#.png"
+
+# Hidden Easter Eggs.
+	robot.hear /fuck you Jeeves/i, (res) ->
+		res.send "Fuck you too pussy"
