@@ -6,7 +6,6 @@
   "description": "A GroupMe chat bot for utility and amusement purposes.",
   "dependencies": {
     "hubot": "^2.16.0",
-    "hubot-baseball": "^1.0.1",
     "hubot-diagnostics": "0.0.1",
     "hubot-groupme": "^2.2.0",
     "hubot-heroku-keepalive": "^1.0.0",
