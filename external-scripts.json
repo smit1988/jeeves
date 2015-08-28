@@ -1,4 +1,5 @@
 [
+  "hubot-baseball",
   "hubot-youtube",
   "hubot-diagnostics",
   "hubot-heroku-keepalive",
