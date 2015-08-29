@@ -35,6 +35,9 @@ module.exports = (robot) ->
 	robot.hear /Meegan you left your jacket!/i, (res) ->
 		res.send res.random meegan
 
+	robot.hear /Boom Boom Pow/i, (res) ->
+		res.send "https://33.media.tumblr.com/17c4b0c1c8b73c764015facb2c3346d5/tumblr_mtfyv5XMVl1qd8zg3o7_250.gif"
+
 # Hidden Easter Eggs.
 	robot.hear /fuck you Jeeves/i, (res) ->
 		res.send "Fuck you too pussy"

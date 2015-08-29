@@ -15,3 +15,7 @@ module.exports = (robot) ->
 
   robot.hear /Thunderfury, Blessed Blade of the Windseeker/i, (res) ->
     res.send res.random thunderfury 
+
+  # TODO put this on the website docs when Dillon gives me the go.
+  robot.hear /Watch for dem ganks/i, (res) ->
+    res.send "https://i.ytimg.com/vi/j5-k__SLgnk/maxresdefault.jpg"
