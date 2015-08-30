@@ -4,10 +4,12 @@
 # Commands:
 #	For Dillon!!! - Posts the ant jumping on spider gif and yells For Dillon!
 # 	The real Hoose! - Posts the real Hoose, we know who you really are.
+#  The real Dave! - Posts the real Dave. 
 #	Mexican Hoose - Posts the real Hoose as a Mexican drug lord.
 # 	Nostalgia - Posts the 7-26-10 LK kill that the group Nostalgia is named after.
 #  Where is Cody? - Tries to find our pal Cody Skrabo.
 #  Meegan you left your jacket! - Meegan appears, just give up on her already!
+#  Boom Boom Pow - Fergie pops up and sings boom boom pow
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -19,6 +21,9 @@ module.exports = (robot) ->
 
 	robot.hear /The real Hoose!/i, (res) ->
 		res.send "http://cs5.pikabu.ru/images/big_size_comm/2015-02_2/14235830609123.jpg" 
+
+	robot.hear /The real Dave!/i, (res) ->
+		res.send "http://40.media.tumblr.com/tumblr_maobzym6gi1r8269to1_500.jpg"
 
 	robot.hear /Mexican Hoose/i, (res) ->
 		res.send "http://i.imgur.com/MjUjqz7.jpg"
