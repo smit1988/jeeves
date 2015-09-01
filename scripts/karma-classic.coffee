@@ -103,10 +103,10 @@ module.exports = (robot) ->
   ###
   # Listen for "karma empty x" and empty x's karma
   ###
-  robot.respond /karma empty ?(\S+[^-\s])$/i, (msg) ->
-    subject = msg.match[1].toLowerCase()
-    karma.kill subject
-    msg.send "#{subject} has had its karma scattered to the winds."
+  #robot.respond /karma empty ?(\S+[^-\s])$/i, (msg) ->
+  #  subject = msg.match[1].toLowerCase()
+  #  karma.kill subject
+  #  msg.send "#{subject} has had its karma scattered to the winds."
 
   ###
   # Function that handles best and worst list
