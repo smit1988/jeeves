@@ -28,13 +28,20 @@ class Karma
     @cache = {}
 
     @increment_responses = [
-      "+1!", "gained a level!", "is a boss!", "is going to the top!",
+      "+1!", 
+      "gained a level!", 
+      "is a boss!", 
+      "is going to the top!",
       "found a green mushroom!"
     ]
 
     @decrement_responses = [
-      "took a hit! *chirps*.", "took a dive.", "lost a life.", "lost a level.",
-      "got owned", "got slapped on the hand"
+      "took a hit! *chirps*.", 
+      "took a dive.", 
+      "lost a life.", 
+      "lost a level.",
+      "got owned", 
+      "got slapped on the hand"
     ]
 
     @robot.brain.on 'loaded', =>
@@ -87,6 +94,10 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
+    
+    msg.getUsers process.env.HUBOT_GROUPME_ROOM_ID, (data) ->
+      msg.send data
+
     karma.increment subject
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
 
