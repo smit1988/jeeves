@@ -95,8 +95,7 @@ module.exports = (robot) ->
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
     users = robot.brain.users()
-    users
-
+	 console.log users
     #robot.brain.users process.env.HUBOT_GROUPME_ROOM_ID, (data) ->
     #  msg.send data
 
