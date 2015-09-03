@@ -95,13 +95,6 @@ module.exports = (robot) ->
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
     
-    msg.send typeof robot + " Robot keys: " + Object.keys robot 
-    msg.send typeof robot.adapter + " Adapter keys: " + Object.keys robot.adapter
-    msg.send typeof robot.adapter._events + " _Events keys: " + Object.keys robot.adapter._events
-    msg.send typeof robot.adapter.cli + " CLI keys: " + Object.keys robot.adapter.cli
-    msg.send typeof robot.adapter.cli.commands + " Commands keys: " + Object.keys robot.adapter.cli.commands
-    msg.send typeof robot.brain + " Brain keys: " + Object.keys robot.brain
-    typeof robot.adapterName + " Adapter name keys: " 
     robot.adapters.getUsers process.env.HUBOT_GROUPME_ROOM_ID, (data) ->
       msg.send data
 
