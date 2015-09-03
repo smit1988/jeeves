@@ -95,8 +95,11 @@ module.exports = (robot) ->
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
     
-    robot.adapters.getUsers process.env.HUBOT_GROUPME_ROOM_ID, (data) ->
-      msg.send data
+    msg.send robot
+    msg.send robot.brain
+    msg.send robot.brain.users
+    #robot.brain.users process.env.HUBOT_GROUPME_ROOM_ID, (data) ->
+    #  msg.send data
 
     karma.increment subject
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
