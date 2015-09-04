@@ -103,6 +103,8 @@ module.exports = (robot) ->
 
     # TESTING
     allUsers = []
+    allUsers.push new User "Jeeves", "Jeeves", 530
+
     returnedUsers = robot.brain.users()
     console.log returnedUsers
     #console.log msg.message.user.user_id
@@ -114,11 +116,9 @@ module.exports = (robot) ->
     #console.log allUsers
    
     for user in allUsers
-      console.log user
-      console.log user.name
-      #if subject.match(user.name.toLowerCase())  
-      #  karma.increment user.user_id
-      #  msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
+      if subject.match(user.username.toLowerCase())  
+        karma.increment user.user_id
+        msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
     
     msg.send "Sorry I couldn't find a person with that name"
 
