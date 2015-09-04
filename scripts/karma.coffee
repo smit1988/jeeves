@@ -111,12 +111,13 @@ module.exports = (robot) ->
     console.log returnedUsers
     #console.log msg.message.user.user_id
     #console.log new User 'jonathan', 'peeop', 123
+    console.log "For loop beginning" 
     for user in returnedUsers
       console.log "In for loop"
       console.log "Object Properties: " + user.name + ", " + user.nickname + ", " + user_id
       allUsers.push new User user.name, user.nickname, user_id
     
-    console.log allUsers
+    #console.log allUsers
     # TESTING
 
     karma.increment subject
