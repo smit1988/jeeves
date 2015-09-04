@@ -119,9 +119,10 @@ module.exports = (robot) ->
     for user in allUsers
       if subject.match(user.username.toLowerCase())  
         karma.increment user.user_id
+        found = true
         msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
     
-    msg.send "Sorry I couldn't find a person with that name" if found
+    msg.send "Sorry I couldn't find a person with that name" unless found
 
   ###
   # Listen for "--" messages and decrement
