@@ -114,9 +114,11 @@ module.exports = (robot) ->
     #console.log allUsers
    
     for user in allUsers
-      if subject.match(user.name.toLowerCase())  
-        karma.increment user.user_id
-        msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
+      console.log user
+      console.log user.name
+      #if subject.match(user.name.toLowerCase())  
+      #  karma.increment user.user_id
+      #  msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
     
     msg.send "Sorry I couldn't find a person with that name"
 
