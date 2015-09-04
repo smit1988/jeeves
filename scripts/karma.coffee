@@ -108,7 +108,7 @@ module.exports = (robot) ->
     # TESTING
     allUsers = []
     returnedUsers = robot.brain.users()
-    console.log returnedUsers
+    console.log returnedUsers[1]
     #console.log msg.message.user.user_id
     #console.log new User 'jonathan', 'peeop', 123
     console.log "For loop beginning" 
