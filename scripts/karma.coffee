@@ -96,8 +96,6 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     users = robot.brain.users()
 	 console.log users
-    #robot.brain.users process.env.HUBOT_GROUPME_ROOM_ID, (data) ->
-    #  msg.send data
 
     karma.increment subject
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
