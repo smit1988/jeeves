@@ -108,9 +108,9 @@ module.exports = (robot) ->
     #console.log msg.message.user.user_id
     #console.log new User 'jonathan', 'peeop', 123
     console.log "For loop beginning" 
-    for key, value of returnedUsers
-      console.log "#{key}:#{value}"
-      #console.log "Object Properties: " + user.name + ", " + user.nickname + ", " + user_id
+    for user, userData of returnedUsers
+      console.log "#{user}:#{userData}"
+      console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
       #allUsers.push new User user.name, user.nickname, user_id
     
     #console.log allUsers
