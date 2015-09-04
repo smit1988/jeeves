@@ -86,6 +86,12 @@ class Karma
     sorted = @sort()
     sorted.slice(-n).reverse()
 
+class User
+  constructor: (username, nickname, userId) ->
+    @username = username
+    @nickname = nickname
+    @userId = userId
+
 module.exports = (robot) ->
   karma = new Karma robot
 
@@ -98,9 +104,18 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
-    users = robot.brain.users()
-    console.log users
-    console.log msg.message.user.user_id
+
+    # TESTING
+    allUsers = []
+    returnedUsers = robot.brain.users()
+    console.log returnedUsers
+    #console.log msg.message.user.user_id
+    #console.log new User 'jonathan', 'peeop', 123
+    for user in returnedUsers
+      allUsers.push new User user.name, user.nickname, user_id
+    
+    console.log allUsers
+    # TESTING
 
     karma.increment subject
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
