@@ -95,10 +95,6 @@ class User
 module.exports = (robot) ->
   karma = new Karma robot
 
-  #robot.hear /GroupMe: (.*) changed name to (.*)/i, (msg) ->
-  #  users = robot.brain.users()
-  #  console.log users
-
   ###
   # Listen for "++" messages and increment
   ###
@@ -108,12 +104,12 @@ module.exports = (robot) ->
     # TESTING
     allUsers = []
     returnedUsers = robot.brain.users()
-    console.log returnedUsers[1]
+    console.log returnedUsers
     #console.log msg.message.user.user_id
     #console.log new User 'jonathan', 'peeop', 123
     console.log "For loop beginning" 
-    for user in returnedUsers
-      console.log user
+    for key, value of returnedUsers
+      console.log "#{key}:#{value}"
       #console.log "Object Properties: " + user.name + ", " + user.nickname + ", " + user_id
       #allUsers.push new User user.name, user.nickname, user_id
     
