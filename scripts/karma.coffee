@@ -107,17 +107,18 @@ module.exports = (robot) ->
     console.log returnedUsers
     #console.log msg.message.user.user_id
     #console.log new User 'jonathan', 'peeop', 123
-    console.log "For loop beginning" 
     for user, userData of returnedUsers
-      #console.log "#{user}:#{userData}"
-      console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
       allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name == "system"
+      #console.log "#{user}:#{userData}"
+      #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
+    #console.log allUsers
+   
+    for user in allUsers
+      if subject.match(user.name.toLowerCase())  
+        karma.increment user.user_id
+        msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
     
-    console.log allUsers
-    # TESTING
-
-    karma.increment subject
-    msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
+    msg.send "Sorry I couldn't find a person with that name"
 
   ###
   # Listen for "--" messages and decrement
