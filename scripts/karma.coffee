@@ -111,9 +111,9 @@ module.exports = (robot) ->
     for user, userData of returnedUsers
       #console.log "#{user}:#{userData}"
       #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
-      allUsers.push new User user.name, user.nickname, user_id unless user.name == "system"
+      allUsers.push new User user.name, user.nickname, user.user_id unless user.name == "system"
     
-    #console.log allUsers
+    console.log allUsers
     # TESTING
 
     karma.increment subject
