@@ -95,7 +95,7 @@ module.exports = (robot) ->
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
     users = robot.brain.users()
-	 console.log users
+    console.log users
 
     karma.increment subject
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
