@@ -88,7 +88,6 @@ class Karma
 
 module.exports = (robot) ->
   karma = new Karma robot
-  users = robot.brain.users()
 
   #robot.hear /GroupMe: (.*) changed name to (.*)/i, (msg) ->
   #  users = robot.brain.users()
@@ -99,6 +98,7 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
+    users = robot.brain.users()
     console.log users
 
     karma.increment subject
@@ -109,6 +109,7 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^-\s])--(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
+    users = robot.brain.users()
     console.log users
 
     # avoid catching HTML comments
