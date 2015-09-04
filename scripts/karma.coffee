@@ -90,6 +90,9 @@ module.exports = (robot) ->
   karma = new Karma robot
   users = robot.brain.users()
 
+  robot.hear /GroupMe: (.*) changed name to (.*)/i, (msg) ->
+    users = robot.brain.users()
+
   ###
   # Listen for "++" messages and increment
   ###
