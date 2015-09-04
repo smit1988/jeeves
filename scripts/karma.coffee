@@ -88,13 +88,13 @@ class Karma
 
 module.exports = (robot) ->
   karma = new Karma robot
+  users = robot.brain.users()
 
   ###
   # Listen for "++" messages and increment
   ###
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
-    users = robot.brain.users()
     console.log users
 
     karma.increment subject
@@ -105,6 +105,8 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^-\s])--(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
+    console.log users
+
     # avoid catching HTML comments
     unless subject[-2..] == "<!"
       karma.decrement subject
