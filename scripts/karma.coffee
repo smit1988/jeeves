@@ -100,7 +100,7 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     users = robot.brain.users()
     console.log users
-    console.log msg.message.user
+    console.log msg.message.user.user_id
 
     karma.increment subject
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
