@@ -114,13 +114,14 @@ module.exports = (robot) ->
       #console.log "#{user}:#{userData}"
       #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
     #console.log allUsers
-   
+  
+    found = false 
     for user in allUsers
       if subject.match(user.username.toLowerCase())  
         karma.increment user.user_id
         msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
     
-    msg.send "Sorry I couldn't find a person with that name"
+    msg.send "Sorry I couldn't find a person with that name" if found
 
   ###
   # Listen for "--" messages and decrement
