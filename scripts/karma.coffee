@@ -117,11 +117,11 @@ module.exports = (robot) ->
 
     found = false 
     for user in allUsers
-      match = "/^" + user.username + "$/i" 
-      console.log "Match: " + match
-      console.log subject.match(match)
+      match = user.username.toLowerCase()
+      console.log "Parsed username: " + user.username.toLowerCase()
+      console.log "Given username: " + subject
 
-      if subject.match(match) != null
+      if subject === match  
         karma.increment user.user_id
         found = true
         msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
