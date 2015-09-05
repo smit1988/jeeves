@@ -117,11 +117,13 @@ module.exports = (robot) ->
   
     found = false 
     for user in allUsers
-      if subject.match(user.username.toLowerCase())  
+      if subject.match("/^" + user.username.toLowerCase() + "$/")  
         karma.increment user.user_id
         found = true
         msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
     
+    #TODO Fix how it matches, jonblahblah still matches jon... not good. Anthony doesn't even work. 
+    # It is some error with caching the user_id instead of the name the ?= 0 is getting run in the increment method.    
     msg.send "Sorry I couldn't find a person with that name" unless found
 
   ###
