@@ -114,7 +114,8 @@ module.exports = (robot) ->
       #console.log "#{user}:#{userData}"
       #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
     #console.log allUsers
-  
+
+    console.log user.username.toLowerCase()  
     found = false 
     for user in allUsers
       if subject.match("/^" + user.username.toLowerCase() + "$/")  
