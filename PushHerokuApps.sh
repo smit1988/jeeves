@@ -5,7 +5,7 @@ echo Deploying to all heroku apps...
 echo
 echo Deploying Nostalgia...
 echo
-git push heroku master
+git push jeeves-chatbot master
 echo
 echo Nostalgia deploy complete.
 echo 
