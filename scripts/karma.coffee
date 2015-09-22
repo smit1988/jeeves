@@ -109,22 +109,22 @@ module.exports = (robot) ->
     console.log returnedUsers
     #console.log msg.message.user.user_id
     #console.log new User 'jonathan', 'peeop', 123
-    for user, userData of returnedUsers
-      allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name == "system"
+    #for user, userData of returnedUsers
+    #  allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name == "system"
       #console.log "#{user}:#{userData}"
       #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
     #console.log allUsers
 
-    found = false 
-    for user in allUsers
-      match = user.username.toLowerCase()
-      console.log "Parsed username: " + user.username.toLowerCase()
-      console.log "Given username: " + subject
+    #found = false 
+    #for user in allUsers
+    #  match = user.username.toLowerCase()
+    #  console.log "Parsed username: " + user.username.toLowerCase()
+    #  console.log "Given username: " + subject
 
-      if subject === match  
-        karma.increment user.user_id
-        found = true
-        msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
+    #  if subject === match  
+    #    karma.increment user.user_id
+    #    found = true
+    #    msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
     
     #TODO Fix how it matches, jonblahblah still matches jon... not good. Anthony doesn't even work. 
     # It is some error with caching the user_id instead of the name the ?= 0 is getting run in the increment method.    
