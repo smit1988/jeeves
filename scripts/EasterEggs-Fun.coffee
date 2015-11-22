@@ -16,6 +16,7 @@
 #	Hacking in progress - Posts a hacker gif
 #	I see you - The horse sees all
 #	Cheese wheel - World's largest cheese wheel
+#  Starfish dive - Ohh Patrick
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -64,7 +65,7 @@ module.exports = (robot) ->
 				"http://www.cowart.info/images/clip_image006.jpg",
 				"http://ichef.bbci.co.uk/news/1024/media/images/67646000/jpg/_67646477_camel_thinkstock.jpg",
 				]
-	robot.hear /(oh shit)?,? massive camel attack (gotta|got to) go\!*/i, (res) ->
+	robot.hear /(oh shit)?(, )?massive camel attack (gotta|got to) go\!*/i, (res) ->
 		res.send res.random camels
 
 	hacking = ["http://i.imgur.com/LRUQ1jF.mp4",
@@ -78,6 +79,9 @@ module.exports = (robot) ->
 
 	robot.hear /cheese wheel/i, (res) ->
 		res.send "http://www.seriouseats.com/images/worldslargestwheelofcheese.jpg"
+
+	robot.hear /starfish dive/i, (res) ->
+		res.send "http://27.media.tumblr.com/tumblr_m1xats65OV1r0xydpo1_250.gif"
 
 # Hidden Easter Eggs.
 	robot.hear /fuck you Jeeves/i, (res) ->
