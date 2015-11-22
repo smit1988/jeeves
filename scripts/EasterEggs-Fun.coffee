@@ -14,6 +14,8 @@
 #	The van - Links the majestic Aerostar van
 #	Massive camel attack gotta go! - Camels are coming!
 #	Hacking in progress - Posts a hacker gif
+#	I see you - The horse sees all
+#	Cheese wheel - World's largest cheese wheel
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -70,6 +72,12 @@ module.exports = (robot) ->
 				 ]
 	robot.hear /hacking( in progress)?/i, (res) ->
 		res.send res.random hacking
+
+	robot.hear /i see you/i, (res) ->
+		res.send "http://imgur.com/3ZfhAcJ"
+
+	robot.hear /cheese wheel/i, (res) ->
+		res.send "http://www.seriouseats.com/images/worldslargestwheelofcheese.jpg"
 
 # Hidden Easter Eggs.
 	robot.hear /fuck you Jeeves/i, (res) ->
