@@ -48,7 +48,7 @@ module.exports = (robot) ->
 					"https://49.media.tumblr.com/a4b4bcb9bd6ba0ad104747548dc16276/tumblr_n8bp7hbZix1qirsuqo2_500.gif",
 					"https://45.media.tumblr.com/88c6f737c27649caf5eaf330e116eb4b/tumblr_n84isurQUA1sfmnmgo1_1280.gif"
 					]
-	robot.respond /batmetal me/i, (res) ->
+	robot.respond /batmetal( me)?/i, (res) ->
 		res.send res.random batmetal
 
 # Hidden Easter Eggs.
