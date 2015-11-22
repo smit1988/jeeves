@@ -51,6 +51,9 @@ module.exports = (robot) ->
 	robot.respond /batmetal( me)?/i, (res) ->
 		res.send res.random batmetal
 
+	robot.hear /the van/i, (res) ->
+		res.send "http://imgur.com/CK6dKDW"
+
 # Hidden Easter Eggs.
 	robot.hear /fuck you Jeeves/i, (res) ->
 		res.send "Fuck you too pussy"
