@@ -63,7 +63,7 @@ module.exports = (robot) ->
 
 	camels = ["http://farm8.static.flickr.com/7460/11131280124_e5e2cb5c2e.jpg",
 				"http://www.cowart.info/images/clip_image006.jpg",
-				"http://ichef.bbci.co.uk/news/1024/media/images/67646000/jpg/_67646477_camel_thinkstock.jpg",
+				"http://ichef.bbci.co.uk/news/1024/media/images/67646000/jpg/_67646477_camel_thinkstock.jpg"
 				]
 	robot.hear /(oh shit)?(, )?massive camel attack (gotta|got to) go\!*/i, (res) ->
 		res.send res.random camels
@@ -80,9 +80,15 @@ module.exports = (robot) ->
 	robot.hear /cheese wheel/i, (res) ->
 		res.send "http://www.seriouseats.com/images/worldslargestwheelofcheese.jpg"
 
+	starfish = ["https://i.groupme.com/1080x805.png.753cc4670f0b46b981a1b159db289a52.large",
+					"http://27.media.tumblr.com/tumblr_m1xats65OV1r0xydpo1_250.gif"
+					]
 	robot.hear /starfish dive/i, (res) ->
-		res.send "http://27.media.tumblr.com/tumblr_m1xats65OV1r0xydpo1_250.gif"
+		res.send res.random starfish
 
 # Hidden Easter Eggs.
-	robot.hear /fuck you Jeeves/i, (res) ->
-		res.send "Fuck you too pussy"
+	sassy = ["Fuck you too pussy",
+				"U wot bitch"
+				]
+	robot.hear /(fuck|fuk) (you|u) Jeeves/i, (res) ->
+		res.send res.random sassy
