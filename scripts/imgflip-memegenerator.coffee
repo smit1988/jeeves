@@ -125,6 +125,10 @@ module.exports = (robot) ->
       {
         regex: /maury lie detector:? (.*), (.*)/i,
         template_id: 444501
+      },
+      {
+        regex: /awkward seal:? (.*), (.*)/i,
+        template_id: 13757816
       }
     ]
 
