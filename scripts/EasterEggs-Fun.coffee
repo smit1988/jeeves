@@ -10,6 +10,10 @@
 #  Where is Cody? - Tries to find our pal Cody Skrabo.
 #  Meegan you left your jacket! - Meegan appears, just give up on her already!
 #  Boom Boom Pow - Fergie pops up and sings boom boom pow
+#	/batmetal me - Links a batmetal gif
+#	The van - Links the majestic Aerostar van
+#	Massive camel attack gotta go! - Camels are coming!
+#	Hacking in progress - Posts a hacker gif
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -53,6 +57,19 @@ module.exports = (robot) ->
 
 	robot.hear /the van/i, (res) ->
 		res.send "http://imgur.com/CK6dKDW"
+
+	camels = ["http://farm8.static.flickr.com/7460/11131280124_e5e2cb5c2e.jpg",
+				"http://www.cowart.info/images/clip_image006.jpg",
+				"http://ichef.bbci.co.uk/news/1024/media/images/67646000/jpg/_67646477_camel_thinkstock.jpg",
+				]
+	robot.hear /(oh shit)?,? massive camel attack (gotta|got to) go\!*/i, (res) ->
+		res.send res.random camels
+
+	hacking = ["http://i.imgur.com/LRUQ1jF.mp4",
+				  "https://i.imgur.com/f7rJAZ7.webm"
+				 ]
+	robot.hear /hacking( in progress)?/i, (res) ->
+		res.send res.random hacking
 
 # Hidden Easter Eggs.
 	robot.hear /fuck you Jeeves/i, (res) ->
