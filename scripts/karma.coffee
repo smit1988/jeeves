@@ -103,7 +103,7 @@ module.exports = (robot) ->
 
     # TESTING
     allUsers = []
-    allUsers.push new User "Jeeves", "Jeeves", 530
+#    allUsers.push new User "Jeeves", "Jeeves", 530
 
     returnedUsers = robot.brain.users()
     console.log returnedUsers
