@@ -17,6 +17,7 @@
 #	I see you - The horse sees all
 #	Cheese wheel - World's largest cheese wheel
 #  Starfish dive - Ohh Patrick
+#	Carrots in the pasta - Come on Hoose...
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -85,6 +86,9 @@ module.exports = (robot) ->
 					]
 	robot.hear /starfish dive/i, (res) ->
 		res.send res.random starfish
+
+	robot.hear /carrots in the pasta/i, (res) ->
+		res.send "http://itsybitsyfoodies.com/wp-content/uploads/2010/01/IMG_3397.jpg"
 
 # Hidden Easter Eggs.
 	sassy = ["Fuck you too pussy",
