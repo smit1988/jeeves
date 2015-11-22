@@ -18,6 +18,7 @@
 #	Cheese wheel - World's largest cheese wheel
 #  Starfish dive - Ohh Patrick
 #	Carrots in the pasta - Come on Hoose...
+#	Womp - The classic manatee
 #
 # Notes:
 #	These are easter eggs specific to the GroupMe chat "Nostalgia"
@@ -89,6 +90,9 @@ module.exports = (robot) ->
 
 	robot.hear /carrots in the pasta/i, (res) ->
 		res.send "http://itsybitsyfoodies.com/wp-content/uploads/2010/01/IMG_3397.jpg"
+
+	robot.hear /womp/i, (res) ->
+		res.send "http://i.imgur.com/NA8RHzS.gifv"
 
 # Hidden Easter Eggs.
 	sassy = ["Fuck you too pussy",
