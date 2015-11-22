@@ -83,7 +83,7 @@ module.exports = (robot) ->
 		res.send "http://www.seriouseats.com/images/worldslargestwheelofcheese.jpg"
 
 	starfish = ["https://i.groupme.com/1080x805.png.753cc4670f0b46b981a1b159db289a52.large",
-					"http://27.media.tumblr.com/tumblr_m1xats65OV1r0xydpo1_250.gif"
+					"http://imgur.com/xdQMuvv"
 					]
 	robot.hear /starfish dive/i, (res) ->
 		res.send res.random starfish
