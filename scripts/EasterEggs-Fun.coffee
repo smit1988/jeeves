@@ -73,7 +73,7 @@ module.exports = (robot) ->
 	hacking = ["http://i.imgur.com/LRUQ1jF.mp4",
 				  "https://i.imgur.com/f7rJAZ7.webm"
 				 ]
-	robot.hear /hacking( in progress)?/i, (res) ->
+	robot.hear /hacking in progress/i, (res) ->
 		res.send res.random hacking
 
 	robot.hear /i see you/i, (res) ->
