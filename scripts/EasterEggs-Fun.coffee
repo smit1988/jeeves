@@ -6,6 +6,7 @@
 # 	The real Hoose! - Posts the real Hoose, we know who you really are.
 #  The real Dave! - Posts the real Dave. 
 #	Mexican Hoose - Posts the real Hoose as a Mexican drug lord.
+#  Appalachian Native Hoose - Posts the real Hoose as an Appalachian Native.
 # 	Nostalgia - Posts the 7-26-10 LK kill that the group Nostalgia is named after.
 #  Where is Cody? - Tries to find our pal Cody Skrabo.
 #  Meegan you left your jacket! - Meegan appears, just give up on her already!
@@ -36,6 +37,9 @@ module.exports = (robot) ->
 
 	robot.hear /Mexican Hoose/i, (res) ->
 		res.send "http://i.imgur.com/MjUjqz7.jpg"
+	
+	robot.hear /appalachian native hoose/i, (res) ->
+		res.send "http://imgur.com/UXndXQY"
 
 	robot.hear /Nostalgia/i, (res) ->
 		res.send "http://i.imgur.com/siEhUc5.jpg"
