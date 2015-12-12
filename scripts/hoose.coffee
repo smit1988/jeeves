@@ -19,7 +19,7 @@ module.exports = (robot) ->
 		res.send "http://i.imgur.com/MjUjqz7.jpg"
 	
 	robot.hear /appalachian native hoose/i, (res) ->
-		res.send "http://imgur.com/UXndXQY"
+		res.send "https://i.groupme.com/1080x720.png.c49b818ad57c49f0a4f8504e176328b7.large"
 
 	robot.hear /eskimo hoose/i, (res) ->
 		res.send "https://i.groupme.com/1080x717.png.75cd2fd3e41e4ebe9c11f5019acb710e.large"
