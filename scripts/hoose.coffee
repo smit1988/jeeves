@@ -28,5 +28,5 @@ module.exports = (robot) ->
 	robot.hear /emo hoose/i, (res) ->
 		res.send "https://i.groupme.com/1080x722.png.941b83322d284c89aade4638771580cd.large"
 
-	robot.hear /((jew|jewish) hoose|joose)/i, (res) ->
+	robot.hear /(jew(ish)? hoose|joose)/i, (res) ->
 		res.send "https://i.groupme.com/1080x724.png.d5319c79d05344bd8b46a04d0b854a03.large"
