@@ -17,6 +17,7 @@
 #  Starfish dive - Ohh Patrick
 #	Carrots in the pasta - Come on Hoose...
 #	Womp - The classic manatee
+#  REEEE - Posts the frog
 #
 # Group:
 #	Nostalgia	
@@ -85,6 +86,9 @@ module.exports = (robot) ->
 
 	robot.hear /womp/i, (res) ->
 		res.send "http://i.imgur.com/NA8RHzS.gifv"
+
+	robot.hear /RE(E)+/, (res) ->
+		res.send "http://img.ifcdn.com/images/4ebab825ebae7d959903fd458735d6d76fd5135537336ec65de8fe28a035ddfc_3.jpg"
 
 # Hidden Easter Eggs.
 	sassy = ["Fuck you too pussy",
