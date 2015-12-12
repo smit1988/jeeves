@@ -1,0 +1,28 @@
+# Description:
+# 	Jeeves responses for various Hoose requests. 
+#
+# Commands:
+# 	The real Hoose! - Posts the real Hoose, we know who you really are.
+#	Mexican Hoose - Posts the real Hoose as a Mexican drug lord.
+#  Appalachian Native Hoose - Posts the real Hoose as an Appalachian Native.
+#	Emo Hoose - Posts the real Hoose dressed Emo.
+#	Eskimo Hoose - Posts the real Hoose as an Eskimo.
+#
+# Group:
+#	Nostalgia
+
+module.exports = (robot) ->
+	robot.hear /The real Hoose!/i, (res) ->
+		res.send "http://cs5.pikabu.ru/images/big_size_comm/2015-02_2/14235830609123.jpg"
+
+	robot.hear /Mexican Hoose/i, (res) ->
+		res.send "http://i.imgur.com/MjUjqz7.jpg"
+	
+	robot.hear /appalachian native hoose/i, (res) ->
+		res.send "http://imgur.com/UXndXQY"
+
+	robot.hear /eskimo hoose/i, (res) ->
+		res.send "https://i.groupme.com/1080x717.png.75cd2fd3e41e4ebe9c11f5019acb710e.large"
+
+	robot.hear /emo hoose/i, (res) ->
+		res.send "https://i.groupme.com/1080x722.png.941b83322d284c89aade4638771580cd.large"
