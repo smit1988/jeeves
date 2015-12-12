@@ -59,7 +59,7 @@ module.exports = (robot) ->
 				"http://www.cowart.info/images/clip_image006.jpg",
 				"http://ichef.bbci.co.uk/news/1024/media/images/67646000/jpg/_67646477_camel_thinkstock.jpg"
 				]
-	robot.hear /(oh shit)?(, )?massive camel attack (got(ta| to) go\!*/i, (res) ->
+	robot.hear /(oh shit)?(, )?massive camel attack got(ta| to) go\!*/i, (res) ->
 		res.send res.random camels
 
 	hacking = ["http://i.imgur.com/LRUQ1jF.mp4",
