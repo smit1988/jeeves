@@ -22,11 +22,17 @@
 # Edited/Appended:
 #   joncatanio
 #
-# Known Bugs:
-# 	 1.) All the karma breakdowns are broken. Don't want to keep duplicating
-#       code to find the users so I'm going to break that up into a function
-#       eventually...
-#
+# Known Bugs/Issues:
+# 	 - All the karma breakdowns are broken. Don't want to keep duplicating
+#     code to find the users so I'm going to break that up into a function
+#     eventually...
+#   - Duplicate names need to be handled properly.
+#   - Pushing users into an array everytime I hear --/++ etc. Need to look
+#     into an optimization, while still ensuring that newly added or removed
+#     users are included.
+#   - Allow multiple (in/de)crements in one line. 
+#   - Don't allow caller to give themselves karma.
+#   - Condense and refactor some code, break things out into functions at least.
 
 class Karma
 
@@ -106,6 +112,7 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
+    subjectCase = msg.match[1]
 
     allUsers = []
 	 # Always make sure Jeeves is an available member.
@@ -114,31 +121,32 @@ module.exports = (robot) ->
     returnedUsers = robot.brain.users()
     #console.log returnedUsers
    
-    # Push all users in a given group onto the array. 
     for user, userData of returnedUsers
       allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
-      #console.log "#{user}:#{userData}"
-      #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
 
     found = false
-    for user in allUsers when found isnt true
+    duplicate = false
+    recipient = null
+
+    # If nicknames ever change and become necessary from the API call just 
+    # copy the username logic below.
+    for user in allUsers
       matchUserName = user.username.toLowerCase().split " "
-      matchNickName = user.nickname.toLowerCase().split " "
-		
+      console.log user
       # Definitely could be optimized...
-      for name in matchUserName when found isnt true
+      for name in matchUserName
         if subject is name
-          karma.increment user.user_id
+          duplicate = true if found is true
           found = true
-          msg.send "#{user.username} #{karma.incrementResponse()} (Karma: #{karma.get(user.user_id)})"
-
-      for name in matchNickName when found isnt true
-        if subject is name
-          karma.increment user.user_id
-          found = true
-          msg.send "#{user.username} #{karma.incrementResponse()} (Karma: #{karma.get(user.user_id)})"
-
-    msg.send "Sorry I couldn't find a person named #{subject}" unless found
+          # This line is obsolete if there is a duplicate.
+          recipient = user
+    
+    msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
+    msg.send "There are multiple people with the name #{subjectCase}" if duplicate
+    if recipient isnt null
+      karma.increment recipient.user_id unless duplicate
+      msg.send "#{recipient.username} #{karma.incrementResponse()} (Karma: #{karma.get(recipient.user_id)})" if (
+       found is true and duplicate is false)
 
   ###
   # Listen for "--" messages and decrement
@@ -146,6 +154,7 @@ module.exports = (robot) ->
   ###
   robot.hear /@?(\S+[^-\s])--(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
+    subjectCase = msg.match[1]
 
     allUsers = []
 	 # Always make sure Jeeves is an available member.
@@ -157,28 +166,30 @@ module.exports = (robot) ->
     # Push all users in a given group onto the array. 
     for user, userData of returnedUsers
       allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
-      #console.log "#{user}:#{userData}"
-      #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
 
     found = false
-    for user in allUsers when found isnt true
+    duplicate = false
+    recipient = null
+
+    # If nicknames ever change and become necessary from the API call just 
+    # copy the username logic below.
+    for user in allUsers
       matchUserName = user.username.toLowerCase().split " "
-      matchNickName = user.nickname.toLowerCase().split " "
 		
       # Definitely could be optimized...
-      for name in matchUserName when found isnt true
+      for name in matchUserName
         if subject is name
-          karma.decrement user.user_id
+          duplicate = true if found is true
           found = true
-          msg.send "#{user.username} #{karma.decrementResponse()} (Karma: #{karma.get(user.user_id)})"
-
-      for name in matchNickName when found isnt true
-        if subject is name
-          karma.decrement user.user_id
-          found = true
-          msg.send "#{user.username} #{karma.decrementResponse()} (Karma: #{karma.get(user.user_id)})"
-
-    msg.send "Sorry I couldn't find a person named #{subject}" unless found
+          # This line is obsolete if there is a duplicate.
+          recipient = user
+    
+    msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
+    msg.send "There are multiple people with the name #{subjectCase}" if duplicate
+    if recipient isnt null
+      karma.decrement recipient.user_id unless duplicate
+      msg.send "#{recipient.username} #{karma.decrementResponse()} (Karma: #{karma.get(recipient.user_id)})" if (
+       found is true and duplicate is false)
 
   ###
   # Listen for "karma empty x" and empty x's karma
