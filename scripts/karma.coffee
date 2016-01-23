@@ -21,6 +21,12 @@
 #
 # Edited/Appended:
 #   joncatanio
+#
+# Known Bugs:
+# 	 1.) All the karma breakdowns are broken. Don't want to keep duplicating
+#       code to find the users so I'm going to break that up into a function
+#       eventually...
+#
 
 class Karma
 
