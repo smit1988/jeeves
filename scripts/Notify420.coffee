@@ -9,7 +9,7 @@
 
 #schedule = require "node-schedule"
 
-#module.exports = (robot) ->
+module.exports = (robot) ->
 #	rule = new schedule.RecurrenceRule()
 #	rule.hour = 0
 #	rule.minute = 57

@@ -19,7 +19,7 @@
 #   D. Stuart Freeman (@stuartf) https://github.com/stuartf
 #   Andy Beger (@abeger) https://github.com/abeger
 #
-# Edited:
+# Edited/Appended:
 #   joncatanio
 
 class Karma
@@ -28,19 +28,19 @@ class Karma
     @cache = {}
 
     @increment_responses = [
-      "+1!", 
-      "gained a level!", 
-      "is a boss!", 
+      "+1!",
+      "gained a level!",
+      "is a boss!",
       "is going to the top!",
       "found a green mushroom!"
     ]
 
     @decrement_responses = [
-      "took a hit! *chirps*.", 
-      "took a dive.", 
-      "lost a life.", 
+      "took a hit! *chirps*.",
+      "took a dive.",
+      "lost a life.",
       "lost a level.",
-      "got owned", 
+      "got owned",
       "got slapped on the hand"
     ]
 
@@ -101,54 +101,78 @@ module.exports = (robot) ->
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
 
-    # TESTING
     allUsers = []
-#    allUsers.push new User "Jeeves", "Jeeves", 530
+	 # Always make sure Jeeves is an available member.
+    allUsers.push new User "Jeeves", "Jeeves", 530
 
     returnedUsers = robot.brain.users()
-    console.log returnedUsers
-    #console.log msg.message.user.user_id
-#    for user, userData of returnedUsers
-#      allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name == "system"
-#      console.log "#{user}:#{userData}"
-#      console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
-#    console.log allUsers
-    found = false
-    for user of returnedUsers
-      console.log user.username
-      match = user.name.toLowerCase()
-      if subject is match
-        karma.increment user.user_id
-        found = true
-        msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
-#    found = false
-#    for user in allUsers
-#      match = user.username.toLowerCase()
-#      console.log "Parsed username: " + user.username.toLowerCase()
-#      console.log "Given username: " + subject
+    #console.log returnedUsers
+   
+    # Push all users in a given group onto the array. 
+    for user, userData of returnedUsers
+      allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
+      #console.log "#{user}:#{userData}"
+      #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
 
-#      if subject === match
-#        karma.increment user.user_id
-#        found = true
-#        msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
-    
-    #TODO Fix how it matches, jonblahblah still matches jon... not good. Anthony doesn't even work. 
-    # It is some error with caching the user_id instead of the name the ?= 0 is getting run in the increment method.    
-    msg.send "Sorry I couldn't find a person with that name" unless found
     found = false
+    for user in allUsers when found isnt true
+      matchUserName = user.username.toLowerCase().split " "
+      matchNickName = user.nickname.toLowerCase().split " "
+		
+      # Definitely could be optimized...
+      for name in matchUserName when found isnt true
+        if subject is name
+          karma.increment user.user_id
+          found = true
+          msg.send "#{user.username} #{karma.incrementResponse()} (Karma: #{karma.get(user.user_id)})"
+
+      for name in matchNickName when found isnt true
+        if subject is name
+          karma.increment user.user_id
+          found = true
+          msg.send "#{user.username} #{karma.incrementResponse()} (Karma: #{karma.get(user.user_id)})"
+
+    msg.send "Sorry I couldn't find a person named #{subject}" unless found
 
   ###
   # Listen for "--" messages and decrement
+  # TODO: Optimize increment/decrement, too much code reuse but it works.
   ###
   robot.hear /@?(\S+[^-\s])--(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
-    users = robot.brain.users()
-    console.log users
 
-    # avoid catching HTML comments
-    unless subject[-2..] == "<!"
-      karma.decrement subject
-      msg.send "#{subject} #{karma.decrementResponse()} (Karma: #{karma.get(subject)})"
+    allUsers = []
+	 # Always make sure Jeeves is an available member.
+    allUsers.push new User "Jeeves", "Jeeves", 530
+
+    returnedUsers = robot.brain.users()
+    #console.log returnedUsers
+   
+    # Push all users in a given group onto the array. 
+    for user, userData of returnedUsers
+      allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
+      #console.log "#{user}:#{userData}"
+      #console.log "Object Properties: " + userData.name + ", " + userData.nickname + ", " + userData.user_id
+
+    found = false
+    for user in allUsers when found isnt true
+      matchUserName = user.username.toLowerCase().split " "
+      matchNickName = user.nickname.toLowerCase().split " "
+		
+      # Definitely could be optimized...
+      for name in matchUserName when found isnt true
+        if subject is name
+          karma.decrement user.user_id
+          found = true
+          msg.send "#{user.username} #{karma.decrementResponse()} (Karma: #{karma.get(user.user_id)})"
+
+      for name in matchNickName when found isnt true
+        if subject is name
+          karma.decrement user.user_id
+          found = true
+          msg.send "#{user.username} #{karma.decrementResponse()} (Karma: #{karma.get(user.user_id)})"
+
+    msg.send "Sorry I couldn't find a person named #{subject}" unless found
 
   ###
   # Listen for "karma empty x" and empty x's karma
