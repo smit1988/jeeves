@@ -26,7 +26,6 @@
 # 	 - All the karma breakdowns are broken. Don't want to keep duplicating
 #     code to find the users so I'm going to break that up into a function
 #     eventually...
-#   - Duplicate names need to be handled properly.
 #   - Pushing users into an array everytime I hear --/++ etc. Need to look
 #     into an optimization, while still ensuring that newly added or removed
 #     users are included.
@@ -132,7 +131,7 @@ module.exports = (robot) ->
     # copy the username logic below.
     for user in allUsers
       matchUserName = user.username.toLowerCase().split " "
-      console.log user
+      
       # Definitely could be optimized...
       for name in matchUserName
         if subject is name
@@ -140,12 +139,12 @@ module.exports = (robot) ->
           found = true
           # This line is obsolete if there is a duplicate.
           recipient = user
-    
+  
     msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
     msg.send "There are multiple people with the name #{subjectCase}" if duplicate
     if recipient isnt null
-      karma.increment recipient.user_id unless duplicate
-      msg.send "#{recipient.username} #{karma.incrementResponse()} (Karma: #{karma.get(recipient.user_id)})" if (
+      karma.increment recipient.userId unless duplicate
+      msg.send "#{recipient.username} #{karma.incrementResponse()} (Karma: #{karma.get(recipient.userId)})" if (
        found is true and duplicate is false)
 
   ###
@@ -187,8 +186,8 @@ module.exports = (robot) ->
     msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
     msg.send "There are multiple people with the name #{subjectCase}" if duplicate
     if recipient isnt null
-      karma.decrement recipient.user_id unless duplicate
-      msg.send "#{recipient.username} #{karma.decrementResponse()} (Karma: #{karma.get(recipient.user_id)})" if (
+      karma.decrement recipient.userId unless duplicate
+      msg.send "#{recipient.username} #{karma.decrementResponse()} (Karma: #{karma.get(recipient.userId)})" if (
        found is true and duplicate is false)
 
   ###
