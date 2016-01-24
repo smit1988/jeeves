@@ -140,6 +140,10 @@ module.exports = (robot) ->
           # This line is obsolete if there is a duplicate.
           recipient = user
   
+    if msg.message.user.user_id is recipient.userId
+      msg.send "You can't karmify yourself!"
+      return
+
     msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
     msg.send "There are multiple people with the name #{subjectCase}" if duplicate
     if recipient isnt null
@@ -183,6 +187,10 @@ module.exports = (robot) ->
           # This line is obsolete if there is a duplicate.
           recipient = user
     
+    if msg.message.user.user_id is recipient.userId
+      msg.send "You can't karmify yourself!"
+      return
+
     msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
     msg.send "There are multiple people with the name #{subjectCase}" if duplicate
     if recipient isnt null
