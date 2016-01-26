@@ -123,7 +123,6 @@ module.exports = (robot) ->
     for user, userData of returnedUsers
       allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
 
-    found = false
     duplicate = false
     recipient = null
 
@@ -135,21 +134,24 @@ module.exports = (robot) ->
       # Definitely could be optimized...
       for name in matchUserName
         if subject is name
-          duplicate = true if found is true
-          found = true
+          duplicate = true if recipient isnt null
           # This line is obsolete if there is a duplicate.
           recipient = user
   
+    if recipient is null
+      msg.send "Sorry I couldn't find a person with the name #{subjectCase}"
+      return
+
     if msg.message.user.user_id is recipient.userId
       msg.send "You can't karmify yourself!"
       return
+    
+    if duplicate
+      msg.send "There are multiple people with the name #{subjectCase}"
+      return
 
-    msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
-    msg.send "There are multiple people with the name #{subjectCase}" if duplicate
-    if recipient isnt null
-      karma.increment recipient.userId unless duplicate
-      msg.send "#{recipient.username} #{karma.incrementResponse()} (Karma: #{karma.get(recipient.userId)})" if (
-       found is true and duplicate is false)
+    karma.increment recipient.userId
+    msg.send "#{recipient.username} #{karma.incrementResponse()} (Karma: #{karma.get(recipient.userId)})"
 
   ###
   # Listen for "--" messages and decrement
@@ -170,7 +172,6 @@ module.exports = (robot) ->
     for user, userData of returnedUsers
       allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
 
-    found = false
     duplicate = false
     recipient = null
 
@@ -178,26 +179,29 @@ module.exports = (robot) ->
     # copy the username logic below.
     for user in allUsers
       matchUserName = user.username.toLowerCase().split " "
-		
+      
       # Definitely could be optimized...
       for name in matchUserName
         if subject is name
-          duplicate = true if found is true
-          found = true
+          duplicate = true if recipient isnt null
           # This line is obsolete if there is a duplicate.
           recipient = user
-    
+  
+    if recipient is null
+      msg.send "Sorry I couldn't find a person with the name #{subjectCase}"
+      return
+
     if msg.message.user.user_id is recipient.userId
       msg.send "You can't karmify yourself!"
       return
+    
+    if duplicate
+      msg.send "There are multiple people with the name #{subjectCase}"
+      return
 
-    msg.send "Sorry I couldn't find a person with the name #{subjectCase}" unless found
-    msg.send "There are multiple people with the name #{subjectCase}" if duplicate
-    if recipient isnt null
-      karma.decrement recipient.userId unless duplicate
-      msg.send "#{recipient.username} #{karma.decrementResponse()} (Karma: #{karma.get(recipient.userId)})" if (
-       found is true and duplicate is false)
-
+    karma.decrement recipient.userId
+    msg.send "#{recipient.username} #{karma.decrementResponse()} (Karma: #{karma.get(recipient.userId)})"
+   
   ###
   # Listen for "karma empty x" and empty x's karma
   ###
