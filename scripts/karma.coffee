@@ -30,7 +30,6 @@
 #     into an optimization, while still ensuring that newly added or removed
 #     users are included.
 #   - Allow multiple (in/de)crements in one line. 
-#   - Don't allow caller to give themselves karma.
 #   - Condense and refactor some code, break things out into functions at least.
 
 class Karma
@@ -211,37 +210,98 @@ module.exports = (robot) ->
   #  msg.send "#{subject} has had its karma scattered to the winds."
 
   ###
+  # Function that finds user given an ID.
+  # @param usr The username or id of a user. 
+  ###
+  findUser = (usrId) ->
+    allUsers = []
+    allUsers.push new User "Jeeves", "Jeeves", 530
+
+    returnedUsers = robot.brain.users()
+   
+    for user, userData of returnedUsers
+      allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
+
+    recipient = null
+
+    for user in allUsers
+      if user.userId is usrId
+        recipient = user
+
+    return recipient
+
+  ###
   # Function that handles best and worst list
   # @param msg The message to be parsed
   # @param title The title of the list to be returned
   # @param rankingFunction The function to call to get the ranking list
   ###
   parseListMessage = (msg, title, rankingFunction) ->
-    count = if msg.match.length > 1 then msg.match[1] else null
+    user = null
+    #count = if msg.match.length > 1 then msg.match[1] else null
+    count = 5
     verbiage = [title]
     if count?
       verbiage[0] = verbiage[0].concat(" ", count.toString())
     for item, rank in rankingFunction(count)
-      verbiage.push "#{rank + 1}. #{item.name} - #{item.karma}"
+      user = findUser(item.name)
+      verbiage.push "#{rank + 1}. #{user.username} - #{item.karma}" unless user is null
     msg.send verbiage.join("\n")
 
   ###
   # Listen for "karma best [n]" and return the top n rankings
   ###
-  robot.respond /karma best\s*(\d+)?$/i, (msg) ->
-    parseData = parseListMessage(msg, "The Best", karma.top)
+  #robot.respond /karma best\s*(\d+)?$/i, (msg) ->
+  #  parseData = parseListMessage(msg, "The Best", karma.top)
 
   ###
   # Listen for "karma worst [n]" and return the bottom n rankings
   ###
-  robot.respond /karma worst\s*(\d+)?$/i, (msg) ->
-    parseData = parseListMessage(msg, "The Worst", karma.bottom)
+  #robot.respond /karma worst\s*(\d+)?$/i, (msg) ->
+  #  parseData = parseListMessage(msg, "The Worst", karma.bottom)
+
+  ###
+  # Listen for "karmaranks" and return the top 5 and bottom 5. Using this
+  # instead of best/worst, count is set to 5 by default.
+  ###
+  robot.respond /karmaranks/i, (msg) ->
+    parseDataTop = parseListMessage(msg, "Karma Ranks Top", karma.top)
+    parseDataBottom = parseListMessage(msg, "Karma Ranks Bottom", karma.bottom)
 
   ###
   # Listen for "karma x" and return karma for x
   ###
   robot.respond /karma (\S+[^-\s])$/i, (msg) ->
-    match = msg.match[1].toLowerCase()
-    if not (match in ["best", "worst"])
-      msg.send "\"#{match}\" has #{karma.get(match)} karma."
+    subject = msg.match[1].toLowerCase()
+    subjectCase = msg.match[1]
+
+    allUsers = []
+    allUsers.push new User "Jeeves", "Jeeves", 530
+
+    returnedUsers = robot.brain.users()
+    
+    for user, userData of returnedUsers
+      allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
+
+    duplicate = false
+    recipient = null
+
+    for user in allUsers
+      matchUserName = user.username.toLowerCase().split " "
+      
+      for name in matchUserName
+        if subject is name
+          duplicate = true if recipient isnt null
+          recipient = user
+  
+    if recipient is null
+      msg.send "Sorry I couldn't find a person with the name #{subjectCase}"
+      return
+
+    if duplicate
+      msg.send "There are multiple people with the name #{subjectCase}"
+      return
+
+    if not (recipient.userId in ["best", "worst"])
+      msg.send "#{recipient.username} has #{karma.get(recipient.userId)} karma."
 
