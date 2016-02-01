@@ -111,10 +111,10 @@ module.exports = (robot) ->
   robot.hear /@?(\S+[^+\s])\+\+(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
     subjectCase = msg.match[1]
-
+    karma.kill 530
     allUsers = []
 	 # Always make sure Jeeves is an available member.
-    allUsers.push new User "Jeeves", "Jeeves", 530
+    allUsers.push new User "Jeeves", "Jeeves", '530'
 
     returnedUsers = robot.brain.users()
     #console.log returnedUsers
@@ -162,7 +162,7 @@ module.exports = (robot) ->
 
     allUsers = []
 	 # Always make sure Jeeves is an available member.
-    allUsers.push new User "Jeeves", "Jeeves", 530
+    allUsers.push new User "Jeeves", "Jeeves", '530'
 
     returnedUsers = robot.brain.users()
     #console.log returnedUsers
@@ -215,7 +215,7 @@ module.exports = (robot) ->
   ###
   findUser = (usrId) ->
     allUsers = []
-    allUsers.push new User "Jeeves", "Jeeves", 530
+    allUsers.push new User "Jeeves", "Jeeves", '530'
 
     returnedUsers = robot.brain.users()
    
@@ -223,7 +223,7 @@ module.exports = (robot) ->
       allUsers.push new User userData.name, userData.nickname, userData.user_id unless userData.name is "system"
 
     recipient = null
-
+    console.log allUsers
     for user in allUsers
       if user.userId is usrId
         recipient = user
@@ -245,6 +245,8 @@ module.exports = (robot) ->
       verbiage[0] = verbiage[0].concat(" ", count.toString())
     for item, rank in rankingFunction(count)
       user = findUser(item.name)
+      console.log item
+      console.log user
       verbiage.push "#{rank + 1}. #{user.username} - #{item.karma}" unless user is null
     msg.send verbiage.join("\n")
 
@@ -276,7 +278,7 @@ module.exports = (robot) ->
     subjectCase = msg.match[1]
 
     allUsers = []
-    allUsers.push new User "Jeeves", "Jeeves", 530
+    allUsers.push new User "Jeeves", "Jeeves", '530'
 
     returnedUsers = robot.brain.users()
     
