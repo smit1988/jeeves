@@ -112,18 +112,6 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     subjectCase = msg.match[1]
    
- 
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
-    karma.increment '530'
     allUsers = []
 	 # Always make sure Jeeves is an available member.
     allUsers.push new User "Jeeves", "Jeeves", '530'
