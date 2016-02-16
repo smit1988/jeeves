@@ -41,12 +41,12 @@ module.exports = (robot) ->
       if robot.brain.data.hoose
          res.send "https://i.groupme.com/1080x724.png.d5319c79d05344bd8b46a04d0b854a03.large"
 
-   robot.hear /ENABLE HOOSE/, (res) ->
+   robot.respond /ENABLE HOOSE/, (res) ->
       robot.brain.data.hoose ?= {}
       robot.brain.data.hoose = true
-      res.emote "hoose.coffee enabled"
+      res.send "hoose.coffee enabled"
 
-   robot.hear /DISABLE HOOSE/, (res) ->
+   robot.respond /DISABLE HOOSE/, (res) ->
       robot.brain.data.hoose ?= {}
       robot.brain.data.hoose = false
-      res.emote "hoose.coffee disabled"
+      res.send "hoose.coffee disabled"

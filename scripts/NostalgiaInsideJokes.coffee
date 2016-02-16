@@ -66,12 +66,12 @@ module.exports = (robot) ->
       if robot.brain.data.nostalgiaInsideJokes
          res.send "http://itsybitsyfoodies.com/wp-content/uploads/2010/01/IMG_3397.jpg"
 
-   robot.hear /ENABLE NOSTALGIA INSIDE JOKES/, (res) ->
+   robot.respond /ENABLE NOSTALGIA INSIDE JOKES/, (res) ->
       robot.brain.data.nostalgiaInsideJokes ?= {}
       robot.brain.data.nostalgiaInsideJokes = true
-      res.emote "Nostalgia inside jokes enabled"
+      res.send "Nostalgia inside jokes enabled"
 
-   robot.hear /DISABLE NOSTALGIA INSIDE JOKES/, (res) ->
+   robot.respond /DISABLE NOSTALGIA INSIDE JOKES/, (res) ->
       robot.brain.data.nostalgiaInsideJokes ?= {}
       robot.brain.data.nostalgiaInsideJokes = false
-      res.emote "Nostalgia inside jokes disabled"
+      res.send "Nostalgia inside jokes disabled"
