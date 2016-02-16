@@ -4,8 +4,9 @@
 # Commands:
 #  Great White Buffalo - Posts the gif from Hot Tub Time Machine.
 #  Center for ants? - Posts the Zoolander center for ants gif. 
-#  one friend - Posts Kip Drordy
-#  Where is everyone?
+#  one friend - Posts Kip Drordy.
+#  Where is everyone? - Kip Drordy youtube video.
+#  Meegan you left your jacket! - Meegan appears, just give up on her already!
 
 module.exports = (robot) ->
 	robot.hear /Great White Buffalo/i, (res) ->
@@ -20,3 +21,10 @@ module.exports = (robot) ->
 
 	robot.hear /where is every(one|body)\??/i, (res) ->
 		res.send "Lol you have no friends https://youtu.be/SvExPAHT_TM"
+
+	meegan = ["https://media4.giphy.com/media/us72CO9KatWAE/200.gif",
+				 "https://media.giphy.com/media/4tIcgqABXEsnK/giphy.gif"
+				]
+	robot.hear /Meegan you left your jacket!/i, (res) ->
+		res.send res.random meegan
+
