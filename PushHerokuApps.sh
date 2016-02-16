@@ -19,6 +19,15 @@ echo
 echo The Jedi Council deploy complete.
 echo
 
+# 50 Del Mar
+echo
+echo Deploying 50 Del Mar...
+echo
+git push jeeves-chatbot-3 master
+echo
+echo 50 Del Mar deploy complete.
+echo
+
 # Jeeves Test Group
 echo
 echo Deploying Jeeves Test Group
